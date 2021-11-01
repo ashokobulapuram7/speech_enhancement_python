@@ -1,0 +1,217 @@
+
+Screen:
+    MDNavigationLayout:
+        ScreenManager:
+            id:screen_manager
+
+            Screen:
+                name:"home_page"
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Hearing Aid Know'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:8
+                    Widget:
+                    Image:
+                        source:"logo.jpg"
+                    MDLabel:
+                        text: "Tap below Microphone to Speak"
+                        theme_text_color:"Custom"
+                        text_color:app.theme_cls.primary_color
+                        halign: 'center'
+
+                    MDIconButton:
+                        id:MicroPhone
+                        icon: "microphone"
+                        user_font_size : 50
+                        text_color:[0,1,0,1]
+                        md_bg_color:[0,1,0,1]
+                        icon_color: [0, 1, 0, 1]
+                        pos_hint:{"center_x":0.5,"center_y":0.5}
+                        on_release:
+                            app.record_voice()
+                    MDLabel:
+                        text: "Tap play button to play"
+                        theme_text_color:"Custom"
+                        text_color:app.theme_cls.primary_color
+                        halign: 'center'
+
+                    MDIconButton:
+                        id:MicroPhone
+                        icon: "play-circle"
+                        user_font_size : 50
+                        text_color:[0,1,0,1]
+                        md_bg_color:[0,1,0,1]
+                        icon_color: [0, 1, 0, 1]
+                        pos_hint:{"center_x":0.5,"center_y":0.5}
+                        on_release:
+                            app.play_voice()
+
+                    MDLabel:
+                        text: "Noiseless Speech Output"
+                        theme_text_color:"Custom"
+                        text_color:[1,0,0,1]
+                        halign: 'center'
+
+            Screen:
+                name:"about"
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: [0, 0, 0, 0]
+                    spacing: dp(0)
+                    MDToolbar:
+                        id:toolbar
+                        title: 'Hearing Aid Know'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:2
+
+                    MDLabel:
+                        text:"Application:\n\nUser friendly android application specially designed for hearing aid application"
+                        theme_text_color:"Custom"
+                        text_color:[0,0,1,1]
+                        bold:True
+                        font_size:20
+
+                    MDLabel:
+                        text: "Technologies:\n\n1.Python\n2.Machine Learning"
+                        theme_text_color: "Custom"
+                        text_color: [1, 0, 0, 1]
+                        bold: True
+                        font_size: 20
+                    MDLabel:
+                        text: "Working:"
+                        theme_text_color: "Custom"
+                        text_color: [1, 0, 0, 1]
+                        bold: True
+                        font_size: 20
+                    MDLabel:
+                        text:"1.Tap the button on smart phone to record audio through inbuilt microphone.\n2.Tap on the audio to listen the noisless speech."
+                        theme_text_color: "Custom"
+                        text_color: [0, 0, 1, 1]
+                        bold: True
+                        font_size: 20
+
+            Screen:
+                name:"contact_us"
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing:"10dp"
+                    MDToolbar:
+                        title: 'Hearing Aid Know'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state('toggle')]]
+                        elevation:5
+                    MDLabel:
+                        text:"CONTACT US"
+                        theme_text_color:"Custom"
+                        halign:"center"
+                        text_color:[1,0,0,1]
+                        bold:True
+                        font_size:20
+                    MDLabel:
+                        text:"DEVELOPERS:\n    1.O.V.ASHOK KUMAR\n    2.M.LOKESH SAI RAM\n    3.D.AZARUDDIN"
+                        theme_text_color:"Custom"
+                        text_color:[0,0,1,1]
+                        bold:True
+                        font_size:20
+                    MDLabel:
+                        text:"E-MAILS:\n\n    ashokkumarobulapuram@gmail.com\n    lokeshsairam6666@gmail.com\n    dudekulaazaruddin1417@gmail.com"
+                        theme_text_color:"Custom"
+                        text_color:[0,0,1,1]
+                        bold:True
+                        font_size:18
+                    BoxLayout:
+                        spacing:"10"
+                        padding:dp(30)
+                        MDIconButton:
+                            icon: "facebook"
+                            theme_text_color:"Custom"
+                            text_color:[0,0,1,1]
+                            user_font_size: "40sp"
+                            on_release:app.open_facebook()
+                        MDIconButton:
+                            icon: "instagram"
+                            theme_text_color:"Custom"
+                            text_color:[0,0,1,1]
+                            user_font_size: "40sp"
+                            on_release:app.open_insta()
+                        MDIconButton:
+                            icon: "github"
+                            theme_text_color:"Custom"
+                            text_color:[0,0,1,1]
+                            user_font_size: "40sp"
+                            on_release:app.open_github()
+                        MDIconButton:
+                            icon: "linkedin"
+                            theme_text_color:"Custom"
+                            text_color:[0,0,1,1]
+                            user_font_size: "40sp"
+                            on_release:app.open_linkedin()
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            spacing:"10px"
+            padding:"10px"
+            panel_color:rgba("262626")
+            BoxLayout:
+                orientation: 'vertical'
+                Image:
+                    source:"logo.jpg"
+                    size_hint_y: None
+                    height: dp(150)
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+                        MDList:
+                            OneLineIconListItem:
+                                text: "HOME PAGE"
+                                theme_text_color:"Custom"
+                                text_color:app.theme_cls.primary_color
+                                on_press:
+                                    nav_drawer.set_state("close")
+                                    screen_manager.current = "home_page"
+                                IconLeftWidget:
+                                    icon: "home"
+                                    theme_text_color:"Custom"
+                                    text_color:app.theme_cls.primary_color
+                                    on_press:
+                                        nav_drawer.set_state("close")
+                                        screen_manager.current = "home_page"
+                            OneLineIconListItem:
+                                text: "ABOUT"
+                                theme_text_color:"Custom"
+                                text_color:app.theme_cls.primary_color
+                                on_press:
+                                    nav_drawer.set_state("close")
+                                    screen_manager.current = "about"
+
+                                IconLeftWidget:
+                                    icon: "information"
+                                    theme_text_color:"Custom"
+                                    text_color:app.theme_cls.primary_color
+                                    on_press:
+                                        nav_drawer.set_state("close")
+                                        screen_manager.current = "about"
+                            OneLineIconListItem:
+                                text: "CONTACT US"
+                                theme_text_color:"Custom"
+                                text_color:app.theme_cls.primary_color
+                                on_press:
+                                    nav_drawer.set_state("close")
+                                    screen_manager.current ="contact_us"
+                                IconLeftWidget:
+                                    icon: "contacts"
+                                    theme_text_color:"Custom"
+                                    text_color:app.theme_cls.primary_color
+                                    on_press:
+                                        nav_drawer.set_state("close")
+                                        screen_manager.current ="contact_us"
+                MDLabel:
+                    text: "copy right@2021"
+                    font_style:"Overline"
+                    size_hint_y: None
+                    heigth: self.texture_size[1]
+                    theme_text_color:"Custom"
+                    text_color:app.theme_cls.primary_color
+
+
